@@ -63,7 +63,7 @@ contract Vault {
   }
 
   function withdraw() public {
-
+    require(canWithdraw, "not open");
     if(deposites[msg.sender] >= 0) {
       (bool result,) = msg.sender.call{value: deposites[msg.sender]}("");
       if(result) {
